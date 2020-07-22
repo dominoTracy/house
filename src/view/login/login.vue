@@ -48,7 +48,7 @@
                 <el-menu-item index="3">MCC CLUB</el-menu-item>
                 <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">MEDIA ROOM</a></el-menu-item>
             </el-menu>
-            <a class="btnSearch" href="javascript:;">
+            <a class="btnSearch" @click="openSearch" href="javascript:;">
               <img src="../../assets/images/btn_search.png" alt="">
             </a>
             <el-button-group class="btnLang">
@@ -70,6 +70,58 @@
         <swiper-slide><img src="../../assets/images/bj1.jpg" alt=""></swiper-slide>
         <div class= 'swiper-pagination ' slot= 'pagination '></div>
       </swiper>
+      <div class="searchBox" v-if="showSearch" :style="{height:screenHeight+'px'}">
+        <div class="searchBackground" @click="closeSearch"></div>
+        <div class="searchGroup">
+          <div class="searchBigTitle">Find Your Dream Home</div>
+          <div class="searchMiniTitle">e Have Over Million Properties For You</div>
+          <div class="searchMain">
+            <div class="searchColumn">
+              <el-select v-model="locationInput" placeholder="请选择">
+                <el-option
+                  v-for="item in location"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <el-select v-model="Status" placeholder="请选择">
+                <el-option
+                  v-for="item in status"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <el-select v-model="Type" placeholder="请选择">
+                <el-option
+                  v-for="item in type"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+            </div>
+            <div class="searchColumn">
+              <el-select v-model="Bedrooms" placeholder="请选择">
+                <el-option
+                  v-for="item in bedrooms"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <div class="choosePrice">
+                <div class="block">
+                  <div class="demonstration">Price Range</div>
+                  <el-slider v-model="value1" range></el-slider>
+                </div>
+              </div>
+              <el-button>Search now</el-button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="contentCenter">
       <el-row :gutter="20">
@@ -148,29 +200,277 @@
               </div>
             </el-col>
             <el-col :span="8">
-              <div class="houseList" :style="{height:screenHeight * .96 +'px'}">
+              <div class="houseList" v-if="showFloor" :style="{height:screenHeight * .96 +'px'}">
                 <div class="houseTitle">
                   PREMIUM PROPERTY
                 </div>
                 <div class="listBox" :style="{height:screenHeight * .96 - 60 +'px'}">
-                  <div class="listItem">
+                  <div class="listItem" @click="toHouseDetail">
                     <div class="leftBox">
                       <img src="../../assets/images/test_house.jpg" alt="">
                     </div>
                     <div class="rightBox">
-                      258
+                      <div class="rightTitle">Sea Horizon</div>
+                      <div class="rightTitle">
+                        <img class="icon_point" src="../../assets/images/icon_point.png" alt="">
+                        <div class="txtPoint">Pasir Ris Drive 3/Pasir Ris Rise</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm">Nearby</div>
+                        <img class="icon_swm" src="../../assets/images/icon_swm.png" alt="">
+                        <div class="txtSwm">2 Swimming Pool</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm" style="visibility: hidden;">Nearby</div>
+                        <img class="icon_park" src="../../assets/images/icon_park.png" alt="">
+                        <div class="txtSwm">1 Carpark</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea">Land Area: 27,660m²</div>
+                        <div class="txtArea posArea">Total: 495 units</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">GFA: 58,086m²</div>
+                        <div class="txtArea posArea">TOP: 07/10/2016</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
                     </div>
                   </div>
-                  <div class="listItem" :style="{height:(screenHeight * .96 - 60)/3 +'px'}"></div>
-                  <div class="listItem" :style="{height:(screenHeight * .96 - 60)/3 +'px'}"></div>
-                  <div class="listItem" :style="{height:(screenHeight * .96 - 60)/3 +'px'}"></div>
+                  <div class="listItem" @click="toHouseDetail">
+                    <div class="leftBox">
+                      <img src="../../assets/images/test_house.jpg" alt="">
+                    </div>
+                    <div class="rightBox">
+                      <div class="rightTitle">Sea Horizon</div>
+                      <div class="rightTitle">
+                        <img class="icon_point" src="../../assets/images/icon_point.png" alt="">
+                        <div class="txtPoint">Pasir Ris Drive 3/Pasir Ris Rise</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm">Nearby</div>
+                        <img class="icon_swm" src="../../assets/images/icon_swm.png" alt="">
+                        <div class="txtSwm">2 Swimming Pool</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm" style="visibility: hidden;">Nearby</div>
+                        <img class="icon_park" src="../../assets/images/icon_park.png" alt="">
+                        <div class="txtSwm">1 Carpark</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea">Land Area: 27,660m²</div>
+                        <div class="txtArea posArea">Total: 495 units</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">GFA: 58,086m²</div>
+                        <div class="txtArea posArea">TOP: 07/10/2016</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
+                    </div>
+                  </div>
+                  <div class="listItem" @click="toHouseDetail">
+                    <div class="leftBox">
+                      <img src="../../assets/images/test_house.jpg" alt="">
+                    </div>
+                    <div class="rightBox">
+                      <div class="rightTitle">Sea Horizon</div>
+                      <div class="rightTitle">
+                        <img class="icon_point" src="../../assets/images/icon_point.png" alt="">
+                        <div class="txtPoint">Pasir Ris Drive 3/Pasir Ris Rise</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm">Nearby</div>
+                        <img class="icon_swm" src="../../assets/images/icon_swm.png" alt="">
+                        <div class="txtSwm">2 Swimming Pool</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm" style="visibility: hidden;">Nearby</div>
+                        <img class="icon_park" src="../../assets/images/icon_park.png" alt="">
+                        <div class="txtSwm">1 Carpark</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea">Land Area: 27,660m²</div>
+                        <div class="txtArea posArea">Total: 495 units</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">GFA: 58,086m²</div>
+                        <div class="txtArea posArea">TOP: 07/10/2016</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
+                    </div>
+                  </div>
+                  <div class="listItem" @click="toHouseDetail">
+                    <div class="leftBox">
+                      <img src="../../assets/images/test_house.jpg" alt="">
+                    </div>
+                    <div class="rightBox">
+                      <div class="rightTitle">Sea Horizon</div>
+                      <div class="rightTitle">
+                        <img class="icon_point" src="../../assets/images/icon_point.png" alt="">
+                        <div class="txtPoint">Pasir Ris Drive 3/Pasir Ris Rise</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm">Nearby</div>
+                        <img class="icon_swm" src="../../assets/images/icon_swm.png" alt="">
+                        <div class="txtSwm">2 Swimming Pool</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtSwm" style="visibility: hidden;">Nearby</div>
+                        <img class="icon_park" src="../../assets/images/icon_park.png" alt="">
+                        <div class="txtSwm">1 Carpark</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea">Land Area: 27,660m²</div>
+                        <div class="txtArea posArea">Total: 495 units</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">GFA: 58,086m²</div>
+                        <div class="txtArea posArea">TOP: 07/10/2016</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="houseList" v-else :style="{height:screenHeight * .96 +'px'}">
+                <div class="houseTitle">
+                  <img class="arrow_left" @click="toHouseDetail" src="../../assets/images/arrow-left-filling.png" alt="">
+                  SEA HORIZON
+                </div>
+                <div class="listBox" :style="{height:screenHeight * .96 - 60 +'px'}">
+                  <div class="listItem">
+                    <div class="leftBox">
+                      <img src="../../assets/images/test_housetype.jpg" alt="">
+                    </div>
+                    <div class="rightBox">
+                      <div class="rightTitle">Type Ala-P</div>
+                      <div class="rightTitle">
+                        <div class="txtArea">TOTEL:3</div>
+                        <div class="txtArea posArea">BEDROOMS:2</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">AREA:1603sqft</div>
+                        <div class="txtArea posArea">UNCOMPLETED</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
+                    </div>
+                  </div>
+                  <div class="listItem">
+                    <div class="leftBox">
+                      <img src="../../assets/images/test_housetype.jpg" alt="">
+                    </div>
+                    <div class="rightBox">
+                      <div class="rightTitle">Type Ala-P</div>
+                      <div class="rightTitle">
+                        <div class="txtArea">TOTEL:3</div>
+                        <div class="txtArea posArea">BEDROOMS:2</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">AREA:1603sqft</div>
+                        <div class="txtArea posArea">UNCOMPLETED</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
+                    </div>
+                  </div>
+                  <div class="listItem">
+                    <div class="leftBox">
+                      <img src="../../assets/images/test_housetype.jpg" alt="">
+                    </div>
+                    <div class="rightBox">
+                      <div class="rightTitle">Type Ala-P</div>
+                      <div class="rightTitle">
+                        <div class="txtArea">TOTEL:3</div>
+                        <div class="txtArea posArea">BEDROOMS:2</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">AREA:1603sqft</div>
+                        <div class="txtArea posArea">UNCOMPLETED</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
+                    </div>
+                  </div>
+                  <div class="listItem">
+                    <div class="leftBox">
+                      <img src="../../assets/images/test_housetype.jpg" alt="">
+                    </div>
+                    <div class="rightBox">
+                      <div class="rightTitle">Type Ala-P</div>
+                      <div class="rightTitle">
+                        <div class="txtArea">TOTEL:3</div>
+                        <div class="txtArea posArea">BEDROOMS:2</div>
+                      </div>
+                      <div class="rightTitle">
+                        <div class="txtArea" style="width:97.45px">AREA:1603sqft</div>
+                        <div class="txtArea posArea">UNCOMPLETED</div>
+                      </div>
+                      <div class="housePrice">FROM S$ 1,400,000</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </el-col>
       </el-row>
     </div>
     <div class="footer">
-
+      <div class="boxFoot">
+        MCC &nbsp; LAND &nbsp; (s) &nbsp;PTELTD &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; CHINA &nbsp; JINGYE &nbsp; ENGINEERING &nbsp; CORPORATION &nbsp; LTD &nbsp; (SINGAPORE &nbsp; BRANCH)
+      </div>
+      <div class="line"></div>
+      <div class="boxBottom">
+        <div class="bottom1">
+          <div class="bottomRow1">MCC LAND ( SINGAPORE) P TE LTD</div>
+          <div class="bottomRow2 mt36">Bukit batok crescent 319 73 wcega</div>
+          <div class="bottomRow2 mt10">Tower singapore 658065</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10">Email: info@mccsingapore.com.sg</div>
+          <div class="bottomRow2 mt10">@COPYRIGHT 1994 - 2020 . ALL</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10">RIGHTS RESERVED</div>
+        </div>
+        <div class="line2"></div>
+        <div class="bottom1">
+          <div class="bottomRow1">COMMERCIAL</div>
+          <div class="bottomRow2 mt36">For sale</div>
+          <div class="bottomRow2 mt10">For rent</div>
+          <div class="bottomRow2 mt10">Unit search</div>
+          <div class="bottomRow2 mt10">Promotions</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+        </div>
+        <div class="line2"></div>
+        <div class="bottom1">
+          <div class="bottomRow1">INTERNATIONAL</div>
+          <div class="bottomRow2 mt36">Hotels & Serviced residences</div>
+          <div class="bottomRow2 mt10">Shopping mails</div>
+          <div class="bottomRow2 mt10">Food & Beverage</div>
+          <div class="bottomRow2 mt10">Self-storage</div>
+          <div class="bottomRow2 mt10">Laundry services</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+        </div>
+        <div class="line2"></div>
+        <div class="bottom1">
+          <div class="bottomRow1">ABOUTS US</div>
+          <div class="bottomRow2 mt36">Accolades</div>
+          <div class="bottomRow2 mt10">Newsroom</div>
+          <div class="bottomRow2 mt10">Careers</div>
+          <div class="bottomRow2 mt10">Construction updates</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+        </div>
+        <div class="line2"></div>
+        <div class="bottom1">
+          <div class="bottomRow1">CONTACT US</div>
+          <div class="bottomRow2 mt36">Connect with us</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+          <div class="bottomRow2 mt10 visiH">space</div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -258,7 +558,10 @@ export default {
         // Some Swiper option/callback...
       },
       center: {lng: 0, lat: 0},
-      zoom: 12
+      zoom: 12,
+      showFloor: true,
+      showSearch: true,
+      value1: [0, 60000]
     }
   },
   methods: {
@@ -280,11 +583,42 @@ export default {
       this.center.lng = 116.404
       this.center.lat = 39.915
       this.zoom = 15
+    },
+    toHouseDetail () {
+      this.showFloor = !this.showFloor
+    },
+    openSearch () {
+      var preD = function (e) {
+        e.preventDefault()
+      }
+      this.showSearch = !this.showSearch
+      if (this.showSearch) {
+        document.body.style.overflow = 'hidden'
+        document.addEventListener('touchmove', preD, {passive: false}) // 禁止页面滑动
+      } else {
+        document.body.style.overflow = '' // 出现滚动条
+        document.removeEventListener('touchmove', preD, {passive: false})
+      }
+    },
+    closeSearch () {
+      var preD = function (e) {
+        e.preventDefault()
+      }
+      this.showSearch = !this.showSearch
+      document.body.style.overflow = '' // 出现滚动条
+      document.removeEventListener('touchmove', preD, {passive: false})
+    },
+    handleScroll () {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      if (document.getElementsByTagName('body').length === 1) {
+        document.body.scrollTop = this.screenHeight
+      }
     }
   },
   created () {
   },
   mounted () {
+    window.addEventListener('mousewheel', this.handleScroll, false)
     console.log('Current Swiper instance object ', this.swiper)
     this.screenHeight = `${document.documentElement.clientHeight}`// 获取浏览器可视区域高度
     let that = this
@@ -306,6 +640,85 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.searchBox{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .searchBackground{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    top: 0;
+    left: 0;
+  }
+  .searchGroup{
+    position: absolute;
+    z-index: 10001;
+    .searchBigTitle{
+      font-size:48px;
+      font-family:Montserrat;
+      font-weight:600;
+      color:rgba(255,255,255,1);
+    }
+    .searchMiniTitle{
+      font-size:24px;
+      font-family:Montserrat;
+      font-weight:600;
+      color:rgba(255,255,255,1);
+      margin-top: 47px;
+    }
+    .searchMain{
+      border-radius:10px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      margin-top: 48px;
+      z-index: 10001;
+      .searchColumn{
+        padding: 16px 5px 16px 5px !important;
+        display: flex;
+        justify-content: space-between;
+        .el-select{
+          padding: 0 5px 0 5px;
+          // background:rgba(255,255,255,1);
+          // border:2px solid rgba(149,149,149,1);
+          // border-radius:10px;
+        }
+        .choosePrice{
+          width: 231.4px;
+          height: 40px;
+          display: flex;
+          .block{
+            width: 231.4px;
+            height: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .el-slider{
+              width: 100px;
+            }
+            .demonstration{
+              font-size:15px;
+              color:rgba(64,64,64,1);
+            }
+          }
+        }
+        .el-button{
+          width: 231.4px;
+          background:#F6D272;
+          border-radius:10px;height: 40px;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
 .headerMain{
   width: 100%;
   background: url('../../assets/images/bj1.jpg') no-repeat;
@@ -377,6 +790,16 @@ export default {
     font-weight:600;
     color:rgba(64,64,64,1);
     border-bottom: 1px #999999 solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .arrow_left{
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 5px;
+      cursor: pointer;
+    }
   }
   .listBox{
     width: 96%;
@@ -394,6 +817,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-around;
+      cursor: pointer;
       .leftBox{
         width: 200px;
         height: 140px;
@@ -405,6 +829,56 @@ export default {
       .rightBox{
         width: 200px;
         height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        .rightTitle{
+          font-weight:600;
+          display: flex;
+          align-items: center;
+          width: 200px;
+          .txtPoint{
+            margin-left: 5px;
+            font-size: 10px;
+            color:rgba(183,183,183,1);
+          }
+          .icon_point{
+            width: 9px;
+            height: 14px;
+          }
+          .txtSwm{
+            font-size: 10px;
+            color:rgba(128,128,128,1);
+          }
+          .icon_swm{
+            width: 17px;
+            height: 19px;
+            margin: 0 5px 0 5px;
+          }
+          .icon_park{
+            width: 14px;
+            height: 18px;
+            margin: 0 5px 0 7px;
+          }
+          .txtArea{
+            font-size: 10px;
+            color:rgba(102,102,102,1);
+            text-align: left;
+          }
+          .posArea{
+            margin-left: 10px;
+          }
+        }
+        .housePrice{
+          width: 200px;
+          border-top: 1px rgba(204,204,204,1) solid;
+          text-align: right;
+          font-size:16px;
+          font-family:Montserrat;
+          font-weight:600;
+          color:rgba(102,102,102,1);
+        }
       }
     }
   }
@@ -453,6 +927,54 @@ export default {
   min-width:1200px ;
   height:646px;
   background:rgba(53,61,74,1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .boxFoot{
+    // margin-top: 111px;
+    padding-top: 111px;
+    font-size:14px;
+    font-family:HelveticaNeue;
+    font-weight:500;
+    color:rgba(179,179,179,1);
+  }
+  .line{
+    width:1454px;
+    height:1px;
+    background:rgba(153,153,153,1);
+    margin-top: 18px;
+  }
+  .boxBottom{
+    margin-top: 83px;
+    display: flex;
+    align-items: center;
+    .bottom1{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      .bottomRow1{
+        font-size:16px;
+        font-family:HelveticaNeue;
+        font-weight:500;
+        color:rgba(255,255,255,1);
+      }
+      .bottomRow2{
+        font-size:12px;
+        font-family:HelveticaNeue;
+        font-weight:500;
+        color:rgba(204,204,204,1);
+      }
+      .visiH{
+        visibility: hidden;
+      }
+    }
+    .line2{
+      width:1px;
+      height:136px;
+      background:rgba(161,161,161,1);
+      margin: 0 30px 0 50px;
+    }
+  }
 }
 .contentCenter{
   width: 100%;
@@ -467,9 +989,13 @@ export default {
     width: 100% !important;
     height: 100% !important;
     img{
-      min-width: 100%;
-      min-height: 100%;
-      transform:translate(-50%,-50%);
+      margin-left: auto !important;
+      margin-right: auto !important;
+      max-width: 1920px !important;
+      height: auto !important;
+      // min-width: 100%;
+      // min-height: 100%;
+      // transform:translate(-50%,-50%);
     }
   }
 }
@@ -559,6 +1085,18 @@ export default {
       }
     }
   }
+}
+.mt36{
+  margin-top: 36px;
+}
+.mt20{
+  margin-top: 20px;
+}
+.mt50{
+  margin-top: 50px;
+}
+.mt10{
+  margin-top: 10px;
 }
 </style>
 <style lang="scss">
