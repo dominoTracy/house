@@ -137,7 +137,275 @@
                     </el-col>
                 </el-row>
             </div>
-            <div class="content2"></div>
+            <div class="content2">
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <div class="boxGallery">
+                            <div class="titleGallery">
+                                <img class="imgGallery" src="../../assets/images/icon_gallery.png" alt="">
+                            </div>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <div class="boxCarousel">
+                            <el-carousel :interval="5000" arrow="always" type="card" height="420px">
+                                <el-carousel-item>
+                                    <img class="imgCard" src="../../assets/images/bj3.jpg" alt="">
+                                </el-carousel-item>
+                                <el-carousel-item>
+                                    <img class="imgCard" src="../../assets/images/bj3.jpg" alt="">
+                                </el-carousel-item>
+                                <el-carousel-item>
+                                    <img class="imgCard" src="../../assets/images/bj3.jpg" alt="">
+                                </el-carousel-item>
+                            </el-carousel>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+            <!-- location -->
+            <el-row style="background:linear-gradient(0deg,rgba(227,221,211,1),rgba(217,211,202,1));">
+                <el-col :span="24">
+                    <div class="logoLocation">
+                        <img src="../../assets/images/logo_location.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="24">
+                    <div class="boxLocation">
+                        <div class="locationBj">
+                            <el-tabs type="border-card">
+                                <el-tab-pane label="Amentities">Amentities</el-tab-pane>
+                                <el-tab-pane label="Neighbourhood">Neighbourhood</el-tab-pane>
+                            </el-tabs>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <!-- INTRODUCTION -->
+            <el-row style="background:linear-gradient(0deg,rgba(227,221,211,1),rgba(217,211,202,1));">
+                <el-col :span="24">
+                    <div class="icon_int">
+                        <img src="../../assets/images/icon_int.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="bigVideo"></div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="boxMiniVideo">
+                        <div class="miniBox1">
+                            <div class="miniVideo"></div>
+                            <div class="miniVideo"></div>
+                        </div>
+                        <div class="miniBox1">
+                            <div class="miniVideo"></div>
+                            <div class="miniVideo"></div>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <!-- Site Plan -->
+            <el-row>
+                <el-col :span="24">
+                    <div class="logo_site">
+                        <img src="../../assets/images/logo_site.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="24">
+                    <div class="boxSite">
+                        <div class="siteBj">
+                            <div class="slider">
+                                <ul>
+                                    <li>Level Upper</li>
+                                    <li>Level 07</li>
+                                    <li>Level 09 Upper</li>
+                                    <li>Level 09 Lower</li>
+                                    <li>Level 10</li>
+                                    <li>Level 16 Upper</li>
+                                    <li>Level 17 Lower</li>
+                                    <li>Level 22</li>
+                                    <li>Level 23</li>
+                                    <li>Level 24</li>
+                                    <li>Level 25</li>
+                                    <li>Level 27 lower</li>
+                                    <li>Level 29 Lower</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <!-- Floor Plan -->
+            <el-row>
+                <el-col :span="24">
+                    <div class="logo_site floorPlan">
+                        <img src="../../assets/images/logo_floor.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="24">
+                    <div class="boxSite">
+                        <div class="noBj">
+                            <div class="imgBj"></div>
+                            <div class="boxChoose">
+                                <div class="chooseItem"></div>
+                                <div class="chooseItem"></div>
+                                <div class="chooseItem"></div>
+                            </div>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <!-- VR -->
+            <el-row>
+                <el-col :span="24" class="floorTitle">
+                    <div class="logo_site logo_floor">
+                        <img src="../../assets/images/logo_floor.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="24">
+                    <div class="floorBj" :style="{backgroundImage:floorimg}">
+                        <div class="boxFloor">
+                            <img class="leftImg" src="../../assets/images/test3.jpg" alt="">
+                            <img src="../../assets/images/test3.jpg" alt="">
+                            <img src="../../assets/images/test3.jpg" alt="">
+                            <img class="rightImg" src="../../assets/images/test3.jpg" alt="">
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <!-- SHOWFLAT -->
+            <el-row style="background:linear-gradient(0deg,rgba(227,221,211,1),rgba(217,211,202,1));">
+                <el-col :span="24">
+                    <div class="icon_int">
+                        <img src="../../assets/images/icon_int.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="boxMiniVideo vrLeft">
+                        <div class="miniBox1">
+                            <div class="miniVideo"></div>
+                            <div class="miniVideo"></div>
+                        </div>
+                        <div class="miniBox1">
+                            <div class="miniVideo"></div>
+                            <div class="miniVideo"></div>
+                        </div>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="bigVideo vrRight"></div>
+                </el-col>
+            </el-row>
+            <!-- 360 -->
+            <el-row style="background:linear-gradient(0deg,rgba(227,221,211,1),rgba(217,211,202,1));">
+                <el-col :span="12">
+                    <div class="icon_int">
+                        <img src="../../assets/images/icon_int.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="icon_int noLeft">
+                        <img src="../../assets/images/icon_int.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="bigVideo"></div>
+                </el-col>
+                <el-col :span="12">
+                    <div class="boxMiniVideo">
+                        <div class="miniBox1">
+                            <div class="miniVideo"></div>
+                            <div class="miniVideo"></div>
+                        </div>
+                        <div class="miniBox1">
+                            <div class="miniVideo"></div>
+                            <div class="miniVideo"></div>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+            <!-- EVENT -->
+            <el-row>
+                <el-col :span="24">
+                    <div class="icon_int">
+                        <img src="../../assets/images/icon_int.png" alt="">
+                    </div>
+                </el-col>
+                <el-col :span="24">
+                    <div class="boxEvent">
+                        <div class="comi"></div>
+                    </div>
+                </el-col>
+            </el-row>
+            <!-- foot -->
+            <el-row>
+                <el-col :span="24">
+                    <div class="footer">
+                        <div class="boxFoot">
+                            MCC &nbsp; LAND &nbsp; (s) &nbsp;PTELTD &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; CHINA &nbsp; JINGYE &nbsp; ENGINEERING &nbsp; CORPORATION &nbsp; LTD &nbsp; (SINGAPORE &nbsp; BRANCH)
+                        </div>
+                        <div class="line"></div>
+                        <div class="boxBottom">
+                            <div class="bottom1">
+                            <div class="bottomRow1">MCC LAND ( SINGAPORE) P TE LTD</div>
+                            <div class="bottomRow2 mt36">Bukit batok crescent 319 73 wcega</div>
+                            <div class="bottomRow2 mt10">Tower singapore 658065</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10">Email: info@mccsingapore.com.sg</div>
+                            <div class="bottomRow2 mt10">@COPYRIGHT 1994 - 2020 . ALL</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10">RIGHTS RESERVED</div>
+                            </div>
+                            <div class="line2"></div>
+                            <div class="bottom1">
+                            <div class="bottomRow1">COMMERCIAL</div>
+                            <div class="bottomRow2 mt36">For sale</div>
+                            <div class="bottomRow2 mt10">For rent</div>
+                            <div class="bottomRow2 mt10">Unit search</div>
+                            <div class="bottomRow2 mt10">Promotions</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            </div>
+                            <div class="line2"></div>
+                            <div class="bottom1">
+                            <div class="bottomRow1">INTERNATIONAL</div>
+                            <div class="bottomRow2 mt36">Hotels & Serviced residences</div>
+                            <div class="bottomRow2 mt10">Shopping mails</div>
+                            <div class="bottomRow2 mt10">Food & Beverage</div>
+                            <div class="bottomRow2 mt10">Self-storage</div>
+                            <div class="bottomRow2 mt10">Laundry services</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            </div>
+                            <div class="line2"></div>
+                            <div class="bottom1">
+                            <div class="bottomRow1">ABOUTS US</div>
+                            <div class="bottomRow2 mt36">Accolades</div>
+                            <div class="bottomRow2 mt10">Newsroom</div>
+                            <div class="bottomRow2 mt10">Careers</div>
+                            <div class="bottomRow2 mt10">Construction updates</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            </div>
+                            <div class="line2"></div>
+                            <div class="bottom1">
+                            <div class="bottomRow1">CONTACT US</div>
+                            <div class="bottomRow2 mt36">Connect with us</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            <div class="bottomRow2 mt10 visiH">space</div>
+                            </div>
+                        </div>
+                        </div>
+                </el-col>
+            </el-row>
         </div>
     </section>
 </template>
@@ -215,7 +483,8 @@ export default {
       Type: '',
       Bedrooms: '',
       Price: '',
-      value1: [0, 60000]
+      value1: [0, 60000],
+      floorimg: 'url(https://static-xiaoguotu.17house.com/xgt/t/00/1462377860141.jpg)'
     }
   },
   methods: {
@@ -263,11 +532,269 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main{
+    .boxEvent{
+        width: 100%;
+        .comi{
+            width: 100%;
+            height: 1460px;
+            background: url('../../assets/images/test4.png');
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center center;
+        }
+    }
+    .noLeft{
+        padding-left: 20!important;
+    }
+    .vrLeft{
+        margin-left: 40px!important;
+        margin-right: 20px!important;
+    }
+    .vrRight{
+        margin-left: 0!important;
+        margin-right: 40px!important;
+    }
+    .floorBj{
+        width: 100%;
+        height: 700px;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-position: center center;
+        .boxFloor{
+            width: 100%;
+            height:200px;
+            background:rgba(255,255,255,1);
+            position: absolute;
+            top: 700px;
+            left: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            // padding: 0 20px 0 10px;
+            img{
+                width: 23%;
+                height: 190px;
+                border-radius:8px;
+            }
+            .leftImg{
+                margin-left: 30px;
+            }
+            .rightImg{
+                margin-right: 30px;
+            }
+        }
+    }
+    .floorTitle{
+        background: #F2F2F2;
+        padding-bottom: 88px;
+    }
+    .logo_floor{
+        width: 303px;
+    }
+    .noBj{
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        display: flex;
+        .boxChoose{
+            width: 20%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            background: #E6E6E6;
+            .chooseItem{
+                margin-left: 2%;
+                width: 98%;
+                height: 32%;
+                background: #fff;
+            }
+        }
+    }
+    .imgBj{
+        width: 80%;
+        height: 100%;
+        background: url('../../assets/images/test_floor2.png') no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-position: center center;
+    }
+    .floorPlan{
+        width: 303px;
+        height: 66px;
+    }
+    .boxSite{
+        width: 95%;
+        height: 600px;
+        margin: 2.5% 0 88px 2.5%;
+        background: #E6E6E6;
+        padding: .5% .5% .5% .5%;
+        .siteBj{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: url('../../assets/images/test_floor.jpg');
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center center;
+            .slider{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 25%;
+                height: 600px;
+                background: #F2F2F2;
+                ul{
+                    margin-top: 30px;
+                    color:rgba(64,64,64,1);
+                    float: left;
+                    text-align: left;
+                    margin-left: 100px;
+                    li{
+                        font-size:12px;
+                        font-family:Montserrat;
+                        font-weight:600;
+                        color:rgba(64,64,64,1);
+                        cursor: pointer;
+                        margin-top: 10px;
+                    }
+                    li:hover{
+                        color: #E6AC5C;
+                        margin-left: -100px;
+                    }
+                }
+            }
+        }
+    }
+    .logo_site{
+        padding-left: 40px;
+        width: 250px;
+        height: 66px;
+        margin-top: 88px;
+        float: left;
+    }
+    .miniBox1{
+        display: flex;
+        justify-content: space-between;
+        .miniVideo{
+        background: royalblue;
+        // max-width: 300px;
+        width: 49%;
+        height: 190px;
+    }
+    }
+    .boxMiniVideo{
+        margin-top: 50px;
+        margin-left: 20px;
+        margin-right: 40px;
+        height: 400px;
+        margin-bottom: 88px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .bigVideo{
+        margin-top: 50px;
+        margin-left: 40px;
+        height: 400px;
+        background: royalblue;
+        // padding-bottom: 88px;
+        margin-bottom: 88px;
+    }
+    .icon_int{
+        padding-left: 40px;
+        width: 358px;
+        height: 66px;
+        margin-top: 88px;
+        float: left;
+    }
+    .boxLocation{
+        padding-bottom: 88px;
+        .locationBj{
+            margin: 50px 0 0 40px;
+            // padding-right: 40px;
+            width: 94%;
+            min-width: 1200px;
+            height: 500px;
+            background: url('../../assets/images/location_map.jpg') no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center center;
+            border:4px solid rgba(255, 255, 255, 1);
+            box-shadow:0px 8px 12px 0px rgba(0, 0, 0, 0.35);
+            .el-tabs{
+                width: 400px;
+                float: right;
+                height: 496px;
+                // background: #BFBFBF;
+            }
+        }
+    }
+    .logoLocation{
+        padding-left: 40px;
+        img{
+            margin-top: 88px;
+            width: 250px;
+            height: 66px;
+            float: left;
+        }
+    }
     .content2{
         width: 100%;
-        height:928px;
+        height:800px;
         margin-top: 88px;
         background:linear-gradient(0deg,rgba(227,221,211,1),rgba(255,255,255,1));
+        .boxGallery{
+            width: 100%;
+            margin-top: 88px;
+            display: flex;
+            flex-direction: column;
+            .titleGallery{
+                width: 100%;
+                .imgGallery{
+                    float: left;
+                    width: 228px;
+                    height: 66px;
+                    padding-left: 40px;
+                }
+            }
+        }
+        .boxCarousel{
+            margin-top: 108px;
+            padding: 0 40px 0 40px;
+            .el-carousel{
+                height: 450px;
+                overflow: hidden;
+            }
+            .el-carousel__item--card{
+                width: 810px !important;
+                height: 410px !important;
+                background: #fff;
+                border:4px solid rgba(255, 255, 255, 1) !important;
+                box-shadow:0px 4px 10px 0px rgba(0, 0, 0, 0.35) !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                .el-carousel__mask{
+                    background: #000000 !important;
+                    opacity: .7 !important;
+                }
+                .imgCard{
+                    width: 800px;
+                    height: 400px;
+                }
+            }
+            .el-carousel__indicator{
+                width: 300px !important;
+                height: 100px !important;
+            }
+        }
     }
     .content1{
         width: 100%;
@@ -275,7 +802,8 @@ export default {
         .boxImg{
             width: 810px;
             height: 410px;
-            background: #000;
+            border:4px solid rgba(255, 255, 255, 1);
+            box-shadow:0px 8px 12px 0px rgba(0, 0, 0, 0.35);
             padding: 0 0 0 0px;
             margin: 0 0 0 40px;
             .queens{
@@ -336,7 +864,7 @@ export default {
             background-size: cover;
             -webkit-background-size: cover;
             -o-background-size: cover;
-            background-position: center 0;
+            background-position: center center;
         }
         .mainSlider{
             position: absolute;
@@ -580,5 +1108,77 @@ export default {
             }
         }
         }
+    .footer{
+        min-width:1200px ;
+        // height:646px;
+        background:rgba(53,61,74,1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 60px;
+        padding-bottom: 80px;
+        .boxFoot{
+            // margin-top: 111px;
+            padding-top: 111px;
+            font-size:14px;
+            font-family:HelveticaNeue;
+            font-weight:500;
+            color:rgba(179,179,179,1);
+        }
+        .line{
+            width:1454px;
+            height:1px;
+            background:rgba(153,153,153,1);
+            margin-top: 18px;
+        }
+        .boxBottom{
+            margin-top: 83px;
+            display: flex;
+            align-items: center;
+            .bottom1{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            .bottomRow1{
+                font-size:16px;
+                font-family:HelveticaNeue;
+                font-weight:500;
+                color:rgba(255,255,255,1);
+            }
+            .bottomRow2{
+                font-size:12px;
+                font-family:HelveticaNeue;
+                font-weight:500;
+                color:rgba(204,204,204,1);
+            }
+            .visiH{
+                visibility: hidden;
+            }
+            }
+            .line2{
+            width:1px;
+            height:136px;
+            background:rgba(161,161,161,1);
+            margin: 0 30px 0 50px;
+            }
+        }
+    }
+}
+</style>
+<style lang="scss">
+.el-tabs__header{
+    width: 100% !important;
+    .el-tabs__nav{
+        width: 100% !important;
+        .el-tabs__item{
+            width: 50% !important;
+            color:rgba(191,191,191,1)!important;
+            // background: #BFBFBF!important;
+        }
+    }
+    .is-active{
+        font-weight:600;
+        color:#404040!important;
+    }
 }
 </style>

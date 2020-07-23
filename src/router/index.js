@@ -5,6 +5,8 @@ import LoginIn from '@/view/login/login'
 import Swiper from '@/components/Swiper'
 import test from '@/components/test'
 import house from '@/view/house/house'
+import showflat from '@/components/tt'
+import gallery from '@/components/gallery'
 
 Vue.use(Router)
 
@@ -21,9 +23,19 @@ export default new Router({
       component: house
     },
     {
+      path: '/gallery',
+      name: 'gallery',
+      component: gallery
+    },
+    {
       path: '/vr',
       name: 'VR',
       component: VR
+    },
+    {
+      path: '/showflat',
+      name: 'showflat',
+      component: showflat
     },
     {
       path: '/swiper',
