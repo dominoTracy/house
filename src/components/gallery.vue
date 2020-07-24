@@ -5,7 +5,7 @@
         <div class="swiper-thumbnail">
         <div
           class="thumbnail-item bg-img"
-          v-for="(item,index) in url"
+          v-for="(item,index) in list1"
           :key="index"
           :style="'background-image:url('+item+')'"
         >
@@ -17,7 +17,7 @@
         class="swiper-container gallery-top"
         ref="swiperThumbs1"
       >
-        <swiper-slide v-for="(item,index) in url" :key="index" @slideChange="slideChange">
+        <swiper-slide v-for="(item,index) in list" :key="index" @slideChange="slideChange">
           <div class="main-bg bg-img" :style="'background-image:url('+item+')'"></div>
         </swiper-slide>
       </swiper>
@@ -26,6 +26,22 @@
 </template>
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import showflat1 from '../assets/images/showflat1.png'
+import showflat2 from '../assets/images/showflat2.png'
+import showflat3 from '../assets/images/showflat3.png'
+import showflat4 from '../assets/images/showflat4.png'
+import showflat5 from '../assets/images/showflat5.png'
+
+import f1 from '../assets/images/f1.png'
+import f2 from '../assets/images/f2.png'
+import f3 from '../assets/images/f3.png'
+import f4 from '../assets/images/f4.png'
+import f5 from '../assets/images/f5.png'
+
+import s1 from '../assets/images/s1.png'
+import s2 from '../assets/images/s2.png'
+import s3 from '../assets/images/s3.png'
+import s4 from '../assets/images/s4.png'
 export default {
   name: 'gallery',
   components: {},
@@ -35,6 +51,7 @@ export default {
       screenHeight: '',
       swiperOptionThumbs1: {
         spaceBetween: 10,
+        // loop: 'loop',
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -56,17 +73,11 @@ export default {
         watchSlidesVisibility: true,
         watchSlidesProgress: true
       },
-      url: [
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166099&di=6e681c7a7543c32a5ca335ed1d014025&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F62%2F02%2F01300542526392139955025309984.jpg',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166099&di=64450061d034e0966f6094798d21432d&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F52%2F52%2F01200000169026136208529565374.jpg',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166098&di=0cf74d2dbbeb0dd7c75bcdc928ad68be&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F16%2F12%2F01300535031999137270128786964.jpg',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166098&di=2d3909fa45d34cb3f0d573899453b4ec&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F57%2F28%2F01300000921826141405283668131.jpg'
-      ],
       list: [
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166099&di=6e681c7a7543c32a5ca335ed1d014025&imgtype=0&src=http%3A%2F%2Fa1.att.hudong.com%2F62%2F02%2F01300542526392139955025309984.jpg',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166099&di=64450061d034e0966f6094798d21432d&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F52%2F52%2F01200000169026136208529565374.jpg',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166098&di=0cf74d2dbbeb0dd7c75bcdc928ad68be&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F16%2F12%2F01300535031999137270128786964.jpg',
-        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595352166098&di=2d3909fa45d34cb3f0d573899453b4ec&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F57%2F28%2F01300000921826141405283668131.jpg'
+        showflat1, showflat2, showflat3, showflat4, showflat5
+      ],
+      list1: [
+        f1, f2, f3, f4, f5
       ],
       index_url: 0,
       index_list: 0

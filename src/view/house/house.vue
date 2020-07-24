@@ -34,11 +34,11 @@
                             <li>INTRODUCTION</li>
                             <li>SITE PLAN</li>
                             <li>FLOOR PLAN</li>
-                            <li>VR</li>
-                            <li>GALLERY</li>
+                            <li @click="goVR">VR</li>
+                            <li @click="goGallery">GALLERY</li>
                             <li>360 VIEW</li>
                             <li>FINANCING</li>
-                            <li>SHOWFLAT CCTV</li>
+                            <li @click="goShowflat">SHOWFLAT CCTV</li>
                             <li>MEDIA ROOM</li>
                             <li>APPLICATION</li>
                             <li>EVENT</li>
@@ -149,7 +149,7 @@
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="24">
-                        <div class="boxCarousel">
+                        <div class="boxCarousel" @click="goGallery">
                             <el-carousel :interval="5000" arrow="always" type="card" height="420px">
                                 <el-carousel-item>
                                     <img class="imgCard" src="../../assets/images/bj3.jpg" alt="">
@@ -175,8 +175,13 @@
                 <el-col :span="24">
                     <div class="boxLocation">
                         <div class="locationBj">
-                            <el-tabs type="border-card">
-                                <el-tab-pane label="Amentities">Amentities</el-tab-pane>
+                            <el-tabs type="border-card" style="background:#f2f2f2">
+                                <el-tab-pane label="Amentities">
+                                    <div class="contentLo">
+                                        <img src="../../assets/images/contentQueens.png" alt="">
+                                    </div>
+                                    <el-button>Click to VIEW</el-button>
+                                </el-tab-pane>
                                 <el-tab-pane label="Neighbourhood">Neighbourhood</el-tab-pane>
                             </el-tabs>
                         </div>
@@ -191,17 +196,59 @@
                     </div>
                 </el-col>
                 <el-col :span="12">
-                    <div class="bigVideo"></div>
+                    <div class="bigVideo">
+                        <img class="boxplay" src="../../assets/images/boxplay.png" alt="">
+                        <img class="icon_play_big" src="../../assets/images/icon_play_big.png" alt="">
+                        <div class="txtVideo">
+                            <div class="txtContent">
+                                <div class="txt1">Developer</div>
+                                <div class="txt2">Singapore Company</div>
+                            </div>
+                            <el-button>LIVE VIEW </el-button>
+                        </div>
+                    </div>
                 </el-col>
                 <el-col :span="12">
                     <div class="boxMiniVideo">
                         <div class="miniBox1">
-                            <div class="miniVideo"></div>
-                            <div class="miniVideo"></div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
                         </div>
                         <div class="miniBox1">
-                            <div class="miniVideo"></div>
-                            <div class="miniVideo"></div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </el-col>
@@ -261,16 +308,17 @@
             <el-row>
                 <el-col :span="24" class="floorTitle">
                     <div class="logo_site logo_floor">
-                        <img src="../../assets/images/logo_floor.png" alt="">
+                        <img class="logo_virtual" src="../../assets/images/logo_virtual.png" alt="">
                     </div>
                 </el-col>
                 <el-col :span="24">
-                    <div class="floorBj" :style="{backgroundImage:floorimg}">
+                    <div class="floorBj" :style="{backgroundImage:'url('+ floorimg +'  )'}" @click="goVR">
+                        <!-- <img class="icon_where" src="../../assets/images/icon_where.png" alt=""> -->
                         <div class="boxFloor">
-                            <img class="leftImg" src="../../assets/images/test3.jpg" alt="">
-                            <img src="../../assets/images/test3.jpg" alt="">
-                            <img src="../../assets/images/test3.jpg" alt="">
-                            <img class="rightImg" src="../../assets/images/test3.jpg" alt="">
+                            <img class="leftImg" src="../../assets/images/vrr1.png" @mouseover="setimg1" alt="">
+                            <img src="../../assets/images/vrr2.png" @mouseover="setimg2" alt="">
+                            <img src="../../assets/images/vrr3.png" @mouseover="setimg3" alt="">
+                            <img class="rightImg" src="../../assets/images/vrr4.png" @mouseover="setimg4" alt="">
                         </div>
                     </div>
                 </el-col>
@@ -278,50 +326,116 @@
             <!-- SHOWFLAT -->
             <el-row style="background:linear-gradient(0deg,rgba(227,221,211,1),rgba(217,211,202,1));">
                 <el-col :span="24">
-                    <div class="icon_int">
-                        <img src="../../assets/images/icon_int.png" alt="">
+                    <div class="icon_int icon_showflat">
+                        <img style="width:272px" src="../../assets/images/logo_showflat.png" alt="">
                     </div>
                 </el-col>
-                <el-col :span="12">
-                    <div class="boxMiniVideo vrLeft">
-                        <div class="miniBox1">
-                            <div class="miniVideo"></div>
-                            <div class="miniVideo"></div>
+                <el-col :span="10">
+                    <div class="boxShowFlat">
+                        <div class="sminibox">
+                            <div class="miniVideo sFlat">
+                                <div class="flatBt">
+                                    <img src="../../assets/images/wz1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="miniVideo sFlat">
+                                <div class="flatBt">
+                                    <img src="../../assets/images/wz1.png" alt="">
+                                </div>
+                            </div>
                         </div>
-                        <div class="miniBox1">
-                            <div class="miniVideo"></div>
-                            <div class="miniVideo"></div>
+                        <div class="sminibox">
+                            <div class="miniVideo sFlat">
+                                <div class="flatBt">
+                                    <img src="../../assets/images/wz1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="miniVideo sFlat">
+                                <div class="flatBt">
+                                    <img src="../../assets/images/wz1.png" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="12">
-                    <div class="bigVideo vrRight"></div>
+                <el-col :span="14">
+                    <div class="bigVideo vrRight sWidth">
+                        <div class="txtVideo colorShow">
+                            <div class="txtContent">
+                                <el-button @click="goShowflat">TO VIEW</el-button>
+                            </div>
+                            <div>
+                                <img src="../../assets/images/wz1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
                 </el-col>
             </el-row>
             <!-- 360 -->
             <el-row style="background:linear-gradient(0deg,rgba(227,221,211,1),rgba(217,211,202,1));">
                 <el-col :span="12">
-                    <div class="icon_int">
-                        <img src="../../assets/images/icon_int.png" alt="">
+                    <div class="icon_int logo_360">
+                        <img src="../../assets/images/logo_360.png" alt="">
                     </div>
                 </el-col>
                 <el-col :span="12">
-                    <div class="icon_int noLeft">
-                        <img src="../../assets/images/icon_int.png" alt="">
+                    <div class="icon_int logo_media">
+                        <img src="../../assets/images/logo_media.png" alt="">
                     </div>
                 </el-col>
                 <el-col :span="12">
-                    <div class="bigVideo"></div>
+                    <div class="bigVideo bj360">
+                        <img class="boxplay" src="../../assets/images/icon_360.png" alt="">
+                        <div class="txtVideo">
+                            <div class="txtContent">
+                                <div class="txt3">THE SANTORINI</div>
+                                <div class="txt2">From MCC Singapore Company</div>
+                            </div>
+                            <el-button>LIVE VIEW </el-button>
+                        </div>
+                    </div>
                 </el-col>
                 <el-col :span="12">
                     <div class="boxMiniVideo">
                         <div class="miniBox1">
-                            <div class="miniVideo"></div>
-                            <div class="miniVideo"></div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
                         </div>
                         <div class="miniBox1">
-                            <div class="miniVideo"></div>
-                            <div class="miniVideo"></div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
+                            <div class="miniVideo">
+                                <div class="txtVideo">
+                                    <div class="txtContent">
+                                        <div class="txt1">Developer</div>
+                                        <div class="txt2">Singapore Company</div>
+                                    </div>
+                                    <img class="icon_play_small" src="../../assets/images/icon_play_small.png" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </el-col>
@@ -410,6 +524,11 @@
     </section>
 </template>
 <script>
+import vr1 from '../../assets/images/vr1.png'
+import vr2 from '../../assets/images/vr2.png'
+import vr3 from '../../assets/images/vr3.png'
+import vr4 from '../../assets/images/vr4.png'
+
 export default {
   name: 'house',
   data () {
@@ -484,10 +603,31 @@ export default {
       Bedrooms: '',
       Price: '',
       value1: [0, 60000],
-      floorimg: 'url(https://static-xiaoguotu.17house.com/xgt/t/00/1462377860141.jpg)'
+      floorimg: vr1
     }
   },
   methods: {
+    goVR () {
+      this.$router.push('/vr')
+    },
+    goGallery () {
+      this.$router.push('/gallery')
+    },
+    goShowflat () {
+      this.$router.push('/showflat')
+    },
+    setimg1 () {
+      this.floorimg = vr1
+    },
+    setimg2 () {
+      this.floorimg = vr2
+    },
+    setimg3 () {
+      this.floorimg = vr3
+    },
+    setimg4 () {
+      this.floorimg = vr4
+    },
     showSlider () {
       this.hideslider = !this.hideslider
       this.showslider = !this.showslider
@@ -532,6 +672,90 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main{
+    .txt3{
+        font-size:24px;
+        font-family:Montserrat;
+        font-weight:bold;
+        color:rgba(86,86,86,1);
+    }
+    .bj360{
+        // background: url('../../assets/images/test_housetype.jpg') no-repeat;
+    }
+    .logo_360{
+        width: 237px!important;
+        margin-left: 40px!important;
+    }
+    .logo_media{
+        margin-left: 20px!important;
+        width: 316px!important;
+    }
+    .colorShow{
+        background:rgba(230,172,92,1)!important;
+        .el-button{
+            width:176px;
+            height:44px;
+            border:4px solid rgba(246,252,253,1);
+            border-radius:4px;
+            font-size:20px;
+            font-family:Montserrat;
+            font-weight:bold;
+            color:rgba(255,255,255,1)!important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        img{
+            width: 80%;
+        }
+    }
+    .flatBt{
+        width: 100%;
+        height: 30%;
+        background-color: #E6AC5C;
+        border-radius:0px 0px 8px 8px;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 80%;
+        }
+    }
+    .sWidth{
+        height: 454px!important;
+        margin-top: 60px!important;
+        background: url('../../assets/images/test3.jpg') no-repeat!important;
+        background-size: 100% 100%!important;
+    }
+    .boxShowFlat{
+        display: flex;
+        margin-left: 30px;
+        margin-top: 50px;
+        margin-right: 10px;
+        .sminibox{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start!important;
+            .sFlat{
+                position: relative;
+                width: 94%!important;
+                background: url('../../assets/images/test_house.jpg') no-repeat!important;
+                height: 217px!important;
+                margin: 10px 10px 10px 10px;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+        }
+    }
+    .icon_showflat{
+        margin-left: 0 !important;
+    }
+    .logo_virtual{
+        width: 400px;
+        height: 66px;
+    }
     .boxEvent{
         width: 100%;
         .comi{
@@ -562,6 +786,12 @@ export default {
         -webkit-background-size: cover;
         -o-background-size: cover;
         background-position: center center;
+        cursor: pointer;
+        .icon_where{
+            width: 88px;
+            width: 88px;
+            margin-top: 200px;
+        }
         .boxFloor{
             width: 100%;
             height:200px;
@@ -577,6 +807,7 @@ export default {
                 width: 23%;
                 height: 190px;
                 border-radius:8px;
+                cursor: pointer;
             }
             .leftImg{
                 margin-left: 30px;
@@ -681,11 +912,58 @@ export default {
         display: flex;
         justify-content: space-between;
         .miniVideo{
-        background: royalblue;
-        // max-width: 300px;
-        width: 49%;
-        height: 190px;
-    }
+            background: royalblue;
+            // max-width: 300px;
+            width: 49%;
+            height: 190px;
+            background: url('../../assets/images/miniVideo.png');
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-position: center center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            border-radius:8px;
+            cursor: pointer;
+            .txtVideo{
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 88px;
+                background:linear-gradient(90deg,rgba(255,255,255,1),rgba(230,230,230,1));
+                border-radius:0px 0px 8px 8px;
+                display: flex;
+                align-items: center;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                .icon_play_small{
+                    width: 44px;
+                    height: 44px;
+                    margin-right: 20px;
+                }
+                .txtContent{
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 20px;
+                    .txt1{
+                        text-align: left;
+                        font-size:24px;
+                        font-family:Montserrat;
+                        font-weight:bold;
+                        color:rgba(86,86,86,1);
+                    }
+                    .txt2{
+                        text-align: left;
+                        font-size:18px;
+                        font-family:Montserrat;
+                        font-weight:600;
+                        color:rgba(86,86,86,1);
+                    }
+                }
+            }
+        }
     }
     .boxMiniVideo{
         margin-top: 50px;
@@ -701,12 +979,75 @@ export default {
         margin-top: 50px;
         margin-left: 40px;
         height: 400px;
-        background: royalblue;
-        // padding-bottom: 88px;
+        background: url('../../assets/images/bigVideo.jpg');
         margin-bottom: 88px;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-position: center center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        border-radius:8px;
+        .boxplay{
+            width: 55px;
+            height: 53px;
+            float: right;
+            margin: 2% 20% 0 108%;
+            cursor: pointer;
+        }
+        .icon_play_big{
+            width: 130px;
+            height: 130px;
+            margin-top: 7%;
+            cursor: pointer;
+        }
+        .txtVideo{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 88px;
+            background:linear-gradient(90deg,rgba(255,255,255,1),rgba(230,230,230,1));
+            border-radius:0px 0px 8px 8px;
+            display: flex;
+            align-items: center;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            .el-button{
+                width:176px;
+                height:44px;
+                background:rgba(246,210,114,1);
+                border-radius:4px;
+                font-size:20px;
+                font-family:Montserrat;
+                font-weight:bold;
+                color:rgba(64,64,64,1);
+                margin-right: 20px;
+            }
+            .txtContent{
+                display: flex;
+                flex-direction: column;
+                margin-left: 20px;
+                .txt1{
+                    text-align: left;
+                    font-size:24px;
+                    font-family:Montserrat;
+                    font-weight:bold;
+                    color:rgba(86,86,86,1);
+                }
+                .txt2{
+                    text-align: left;
+                    font-size:18px;
+                    font-family:Montserrat;
+                    font-weight:600;
+                    color:rgba(86,86,86,1);
+                }
+            }
+        }
     }
     .icon_int{
-        padding-left: 40px;
+        margin-left: 40px;
         width: 358px;
         height: 66px;
         margin-top: 88px;
@@ -733,6 +1074,27 @@ export default {
                 height: 496px;
                 // background: #BFBFBF;
             }
+            .contentLo{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 50%;
+                    height: 50%;
+                    margin-left: -15%;
+                    margin-top: 10%;
+                }
+            }
+            .el-button{
+                    width: 195px;
+                    height: 49px;
+                    background: #f6d272;
+                    border-radius: 4px;
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: #000;
+                    margin-left: -15%;
+                    margin-top: 10%;
+                }
         }
     }
     .logoLocation{
@@ -1168,17 +1530,19 @@ export default {
 <style lang="scss">
 .el-tabs__header{
     width: 100% !important;
-    .el-tabs__nav{
+    /deep/.el-tabs__nav{
         width: 100% !important;
+        background: #d9d9d9!important;
         .el-tabs__item{
             width: 50% !important;
-            color:rgba(191,191,191,1)!important;
+            color:#bfbfbf!important;
             // background: #BFBFBF!important;
         }
-    }
-    .is-active{
-        font-weight:600;
-        color:#404040!important;
+        .is-active{
+            background: #f2f2f2!important;
+            font-weight:600;
+            color:#404040!important;
+        }
     }
 }
 </style>

@@ -21,21 +21,21 @@
                         </tr>
                         <tr>
                           <td><a href="javascript:;">Northwave</a></td>
-                          <td><a href="javascript:;">Northwave</a></td>
-                          <td><a href="javascript:;">Northwave</a></td>
+                          <td><a href="javascript:;">Queens Peak</a></td>
+                          <td><a href="javascript:;">Dara Sakor</a></td>
                         </tr>
                         <tr>
-                          <td><a href="javascript:;">Northwave</a></td>
-                          <td></td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><a href="javascript:;">Northwave</a></td>
+                          <td><a href="javascript:;">The Santorini</a></td>
                           <td></td>
                           <td></td>
                         </tr>
                         <tr>
-                          <td><a href="javascript:;">Northwave</a></td>
+                          <td><a href="javascript:;">Canberra Residences</a></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><a href="javascript:;">One Canberra</a></td>
                           <td></td>
                           <td></td>
                         </tr>
@@ -44,9 +44,9 @@
                     </div>
                   </div>
                 </el-submenu>
-                <el-menu-item index="2">MCC SPACE</el-menu-item>
-                <el-menu-item index="3">MCC CLUB</el-menu-item>
-                <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">MEDIA ROOM</a></el-menu-item>
+                <el-menu-item index="2" @click="gopro">MCC SPACE</el-menu-item>
+                <el-menu-item index="3" @click="gopro">MCC CLUB</el-menu-item>
+                <el-menu-item index="4" @click="gopro"><a href="https://www.ele.me" target="_blank">MEDIA ROOM</a></el-menu-item>
             </el-menu>
             <a class="btnSearch" @click="openSearch" href="javascript:;">
               <img src="../../assets/images/btn_search.png" alt="">
@@ -59,7 +59,7 @@
                          :type="btnZh"
                          @click="changeZh">中文</el-button>
             </el-button-group>
-            <el-button size="mini" class="btnLogin">LOGIN</el-button>
+            <el-button size="mini" class="btnLogin" @click="gopro">LOGIN</el-button>
         </div>
       </el-header>
     </div>
@@ -560,11 +560,14 @@ export default {
       center: {lng: 0, lat: 0},
       zoom: 12,
       showFloor: true,
-      showSearch: true,
+      showSearch: false,
       value1: [0, 60000]
     }
   },
   methods: {
+    gopro () {
+      this.$router.push('/house')
+    },
     changeEn () {
       this.lang = 'enUS'
       this.btnEn = 'info'
