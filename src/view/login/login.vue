@@ -14,7 +14,7 @@
                   <div class="boxDown">
                     <div class="boxContent">
                       <table class="boxMenu">
-                        <tr class="firstTr" style="border:1px solid red;pading-bottom:10px">
+                        <tr class="firstTr">
                           <th>Residential Projects</th>
                           <th>Commercial Projects</th>
                           <th>Oversea Projects</th>
@@ -64,60 +64,67 @@
       </el-header>
     </div>
     <div class="banner">
-      <swiper ref= 'mySwiper ' :options= 'swiperOptions ' v-bind:style="{height:screenHeight+'px'}">
-        <swiper-slide><img src="../../assets/images/bj1.jpg" alt=""></swiper-slide>
-        <swiper-slide><img src="../../assets/images/bj1.jpg" alt=""></swiper-slide>
-        <swiper-slide><img src="../../assets/images/bj1.jpg" alt=""></swiper-slide>
+      <swiper :options= 'swiperOptions' v-bind:style="{height:screenHeight+'px'}">
+        <swiper-slide :style="{backgroundImage:'url('+ cc +'  )'}">
+          <img class="txt1" ref="ig1" src="../../assets/images/txt1.png" alt="">
+        </swiper-slide>
+        <swiper-slide :style="{backgroundImage:'url('+ cc +'  )'}">
+          <img class="txt2" ref="ig1" src="../../assets/images/txt1.png" alt="">
+        </swiper-slide>
+        <swiper-slide :style="{backgroundImage:'url('+ cc +'  )'}">
+          <img class="txt3" ref="ig1" src="../../assets/images/txt1.png" alt="">
+        </swiper-slide>
         <div class= 'swiper-pagination ' slot= 'pagination '></div>
       </swiper>
       <div class="searchBox" v-if="showSearch" :style="{height:screenHeight+'px'}">
-        <div class="searchBackground" @click="closeSearch"></div>
-        <div class="searchGroup">
-          <div class="searchBigTitle">Find Your Dream Home</div>
-          <div class="searchMiniTitle">e Have Over Million Properties For You</div>
-          <div class="searchMain">
-            <div class="searchColumn">
-              <el-select v-model="locationInput" placeholder="请选择">
-                <el-option
-                  v-for="item in location"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-              <el-select v-model="Status" placeholder="请选择">
-                <el-option
-                  v-for="item in status"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-              <el-select v-model="Type" placeholder="请选择">
-                <el-option
-                  v-for="item in type"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-            </div>
-            <div class="searchColumn">
-              <el-select v-model="Bedrooms" placeholder="请选择">
-                <el-option
-                  v-for="item in bedrooms"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-              <div class="choosePrice">
-                <div class="block">
-                  <div class="demonstration">Price Range</div>
-                  <el-slider v-model="value1" range></el-slider>
-                </div>
+        <div class="searchBackground" @click="closeSearch">
+          <div class="searchGroup">
+            <div class="searchBigTitle">Find Your Dream Home</div>
+            <div class="searchMiniTitle">We Have Over Million Properties For You</div>
+            <div class="searchMain">
+              <div class="searchColumn">
+                <el-select v-model="locationInput" placeholder="Location" popper-class="select-option">
+                  <el-option
+                    v-for="item in location"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+                <el-select v-model="Status" placeholder="Status" popper-class="select-option">
+                  <el-option
+                    v-for="item in status"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+                <el-select v-model="Type" placeholder="Type" popper-class="select-option">
+                  <el-option
+                    v-for="item in type"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
               </div>
-              <el-button>Search now</el-button>
+              <div class="searchColumn">
+                <el-select v-model="Bedrooms" placeholder="Bedrooms" popper-class="select-option">
+                  <el-option
+                    v-for="item in bedrooms"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+                <div class="choosePrice">
+                  <div class="block">
+                    <div class="demonstration">Price Range</div>
+                    <el-slider v-model="value1" range :max="60000" :mini="0" ></el-slider>
+                  </div>
+                </div>
+                <el-button @click="goSearch">Search now</el-button>
+              </div>
             </div>
           </div>
         </div>
@@ -130,7 +137,7 @@
             </el-col>
       </el-row>
     </div>
-    <div class="contentMap" v-bind:style="{height:screenHeight+'px'}">
+    <div class="contentMap" id="map" v-bind:style="{height:screenHeight+'px'}">
       <el-row :gutter="20">
             <el-col :span="24">
                 <baidu-map class="map" center="新加坡" :zoom="zoom" @ready="handler" :style="{height:screenHeight+'px'}">
@@ -475,48 +482,70 @@
   </section>
 </template>
 <script>
+import bj1 from '../../assets/images/bj1.jpg'
 export default {
   name: 'Login',
   data () {
     return {
+      cc: bj1,
       location: [
         {
-          value: 'zh-CN',
-          label: '中文简体'
+          value: 'singapore',
+          label: 'singapore'
         },
         {
-          value: 'en-US',
-          label: 'English'
+          value: 'oversea',
+          label: 'oversea'
         }
       ],
       status: [
         {
-          value: 'zh-CN',
-          label: '中文简体'
+          value: 'ON SALE',
+          label: 'ON SALE'
         },
         {
-          value: 'en-US',
-          label: 'English'
+          value: 'completed',
+          label: 'completed'
+        },
+        {
+          value: 'SELL OUT',
+          label: 'SELL OUT'
         }
       ],
       type: [
         {
-          value: 'zh-CN',
-          label: '中文简体'
+          value: ' residence',
+          label: ' residence'
         },
         {
-          value: 'en-US',
-          label: 'English'
+          value: 'commerce',
+          label: 'commerce'
         }
       ],
       bedrooms: [
         {
-          value: 'zh-CN',
-          label: '中文简体'
+          value: '1',
+          label: '1'
         },
         {
-          value: 'en-US',
-          label: 'English'
+          value: '2',
+          label: '2'
+        },
+        {
+          value: '3',
+          label: '3'
+        },
+        {
+          value: '4',
+          label: '4'
+        },
+        {
+          value: '5',
+          label: '5'
+        },
+        {
+          value: 'over 5',
+          label: 'over 5'
         }
       ],
       price: [
@@ -551,11 +580,39 @@ export default {
         }
       ],
       swiperOptions: {
-        loop: true,
+        loop: 'loop',
+        autoplay: {
+          disableOnInteraction: false,
+          delay: 1000
+        },
         pagination: {
-          el: '.swiper-pagination '
+          el: '.swiper-pagination'
+        },
+        on: {
+          slideChangeTransitionEnd: (e) => {
+            // console.log(e.activeIndex)
+            // console.log(e.activeIndex % 3)
+            // this.clearOut(this.$refs.ig1)
+            // this.fadeIn(this.$refs.ig1, 100)
+            // switch (e.activeIndex % 3) {
+            //   case 0 :
+            //     this.fadeIn(this.$refs.ig3, 100)
+            //     console.log('0/3')
+            //     break
+            //   case 1 :
+            //     this.fadeIn(this.$refs.ig1, 100)
+            //     console.log('1/4')
+            //     break
+            //   case 2 :
+            //     this.fadeIn(this.$refs.ig2, 100)
+            //     console.log('2')
+            //     break
+            // }
+            // this.clearOut(this.$refs.ig3)
+            // this.clearOut(this.$refs.ig1)
+            // this.clearOut(this.$refs.ig2)
+          }
         }
-        // Some Swiper option/callback...
       },
       center: {lng: 0, lat: 0},
       zoom: 12,
@@ -611,11 +668,40 @@ export default {
       document.body.style.overflow = '' // 出现滚动条
       document.removeEventListener('touchmove', preD, {passive: false})
     },
+    goSearch () {
+      document.querySelector('#map').scrollIntoView(true)
+      this.closeSearch()
+    },
     handleScroll () {
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       if (document.getElementsByTagName('body').length === 1) {
         document.body.scrollTop = this.screenHeight
       }
+    },
+    fadeIn (element, speed) {
+      speed = speed || 30
+      var num = 0
+      var st = setInterval(function () {
+        num++
+        element.style.opacity = num / 10
+        if (num >= 10) {
+          clearInterval(st)
+        }
+      }, speed)
+    },
+    clearOut (element) {
+      element.style.opacity = 0
+    },
+    fadeOut (element, speed) {
+      speed = speed || 30
+      var num = 10
+      var st = setInterval(function () {
+        num--
+        element.style.opacity = num / 10
+        if (num <= 0) {
+          clearInterval(st)
+        }
+      }, speed)
     }
   },
   created () {
@@ -643,6 +729,21 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@font-face {
+  font-family: 'Montserrat'; // txchj 我自己定义的
+  src: url("../../assets/font/Montserrat-SemiBold.ttf"); // 路径自己调整
+}
+.isslider{
+  transform: translate(318px,0);
+  transition: transform 1s;
+}
+.noslider{
+  transform: translate(-318px,0);
+  transition: transform 2s;
+}
+.swpImg{
+  width: 100%;
+}
 .searchBox{
   position: absolute;
   width: 100%;
@@ -659,6 +760,10 @@ export default {
     background: rgba(0,0,0,.7);
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
   }
   .searchGroup{
     position: absolute;
@@ -683,40 +788,54 @@ export default {
       flex-direction: column;
       margin-top: 48px;
       z-index: 10001;
+      width: 1460px;
+      height: 193.8px;
       .searchColumn{
         padding: 16px 5px 16px 5px !important;
         display: flex;
         justify-content: space-between;
         .el-select{
-          padding: 0 5px 0 5px;
-          // background:rgba(255,255,255,1);
-          // border:2px solid rgba(149,149,149,1);
-          // border-radius:10px;
+          width: 464px;
+          height: 63.9px;
+          // padding: 0 5px 0 5px;
+          border:2px solid rgba(149,149,149,1);
+          border-radius:10px;
+          z-index: 10005;
+          .el-input{
+            width: 464px;
+            height: 63.9px;
+          }
         }
         .choosePrice{
-          width: 231.4px;
-          height: 40px;
+          width: 464px;
+          height: 63.9px;
           display: flex;
           .block{
-            width: 231.4px;
-            height: 40px;
+            width: 464px;
+            height: 63.9px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             .el-slider{
-              width: 100px;
+              width: 186px;
             }
             .demonstration{
-              font-size:15px;
+              font-size:18px;
+              font-family:Montserrat;
+              font-weight:600;
               color:rgba(64,64,64,1);
             }
           }
         }
         .el-button{
-          width: 231.4px;
           background:#F6D272;
-          border-radius:10px;height: 40px;
           color: #fff;
+          width:464px;
+          height:64px;
+          border-radius:10px;
+          font-size:25px;
+          font-family:Montserrat;
+          font-weight:600;
         }
       }
     }
@@ -902,21 +1021,30 @@ export default {
 }
 .boxMenu{
   font-size: 16px;
-  float: left;zhang
+  float: left;
+  border-collapse: collapse;
+  margin-right: 67px;
   .firstTr{
     border-bottom: 2px solid rgba(215,215,215,1);
+    th{
+      font-size:16px;
+      font-family:Montserrat;
+      font-weight:bold;
+      color:rgba(26,26,26,1);
+      padding-bottom: 10px;
+    }
   }
   a{
     text-decoration: none;
     color:rgba(77,77,77,1);
   }
   th{
-    padding-right: 75px;
+    padding-right: 134px;
     color:rgba(26,26,26,1);
     font-weight:600;
   }
   td{
-    padding-top: 38px;
+    padding-top: 40px;
   }
 }
 .boxContent{
@@ -991,6 +1119,10 @@ export default {
 /deep/ .swiper-slider{
     width: 100% !important;
     height: 100% !important;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-position: center 0;
     img{
       margin-left: auto !important;
       margin-right: auto !important;
@@ -1058,26 +1190,35 @@ export default {
         border-radius:6px;
         color: #fff;
         font-size:16px;
+        font-family:Montserrat;
+        font-weight:600;
       }
       .btnlanguage{
         width:60px;
         height:36px;
         font-size:16px;
-        font-weight:300;
+        font-family:Montserrat;
+        font-weight:600;
       }
     /* 点击以后的背景色进行隐藏 */
     .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
-        background-color: rgba(0,0,0,0) !important;
+        // background-color: rgba(0,0,0,0) !important;
         color: #F6D272;
     }
     .el-menu--horizontal>.el-menu-item.is-active {
         border-bottom: none;
     }
       .el-menu-item{
-            color: #fff;
+            font-size:16px;
+            font-family:Montserrat;
+            font-weight:600;
+            color:rgba(255,255,255,1)!important;
             a{
                 text-decoration: none;
             }
+      }
+      .el-menu-item:hover{
+        color: #F6D272!important;
       }
       .el-menu{
           background: none;
@@ -1105,15 +1246,18 @@ export default {
 <style lang="scss">
   /* 点击以后的背景色进行隐藏 */
     .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
-              background-color: rgba(0,0,0,0) !important;
+        background-color: rgba(0,0,0,0) !important;
         color: #F6D272;
     }
     .el-menu--horizontal>.el-submenu .el-submenu__title {
-    height: 60px;
-    line-height: 60px;
-    border-bottom: 2px solid transparent;
-    color: #fff;
-}
+        height: 60px;
+        line-height: 60px;
+        border-bottom: 2px solid transparent;
+        font-size:16px;
+        font-family:Montserrat;
+        font-weight:600;
+        color:rgba(255,255,255,1);
+    }
 .el-submenu__icon-arrow{
   display: none;
 }
@@ -1121,4 +1265,69 @@ export default {
   width: 100%;
   left: 0px !important;
 }
+.swiper-slide {
+    position: relative;
+    background-size: cover!important;
+    -webkit-background-size: cover!important;
+    -o-background-size: cover!important;
+    background-position: center 0!important;
+    .txt1{
+      position: absolute;
+      width: 831px;
+      height: 558px;
+      opacity: 1;
+      bottom: 105px;
+      left: 217px;
+    }
+    .txt2{
+      position: absolute;
+      width: 831px;
+      height: 558px;
+      opacity: 1;
+      bottom: 105px;
+      left: 217px;
+    }
+    .txt3{
+      position: absolute;
+      width: 831px;
+      height: 558px;
+      opacity: 1;
+      bottom: 105px;
+      left: 217px;
+    }
+  }
+  .searchColumn{
+    .el-input{
+      width: 464px;
+      height: 63.9px;
+      .el-input__inner{
+        width: 464px;
+        height: 63.9px;
+        font-size:18px;
+        font-family:Montserrat;
+        font-weight:600;
+        color:rgba(64,64,64,1);
+      }
+      .el-input__inner::placeholder{
+        width: 464px;
+        height: 63.9px;
+        font-size:18px;
+        font-family:Montserrat;
+        font-weight:600;
+        color:rgba(64,64,64,1);
+      }
+    }
+  }
+  .select-option{
+    z-index: 100001!important;
+    .el-select-dropdown__item{
+      font-size:18px!important;
+      font-family:Montserrat!important;
+      font-weight:600!important;
+      color:rgba(64,64,64,1)!important;
+    }
+  }
+  .el-tooltip__popper{
+    z-index: 100001!important;
+  }
 </style>

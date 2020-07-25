@@ -7,6 +7,7 @@ import test from '@/components/test'
 import house from '@/view/house/house'
 import showflat from '@/components/tt'
 import gallery from '@/components/gallery'
+import Test from '@/view/test/test'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/',
       name: 'LoginIn',
       component: LoginIn
+    },
+    {
+      path: '/Test',
+      name: 'Test',
+      component: Test
     },
     {
       path: '/house',
@@ -43,7 +49,7 @@ export default new Router({
       component: Swiper
     },
     {
-      path: '/test',
+      path: '/test1',
       name: 'test',
       component: test
     }
