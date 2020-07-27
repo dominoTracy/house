@@ -1,6 +1,6 @@
 # house
 
-> A Vue.js project
+> 看房系统
 
 ## Build Setup
 
